@@ -17,11 +17,16 @@ def send_product_data(client, product):
         # Access the 'nutriments' dictionary first, then get 'sugars'.
         # Provide default empty dictionary {} for nutriments if it doesn't exist.
         # Barcode examples:
-        # 6111246721278
-        # 3175681851849
-        # 8718114724485
-        # 7613039490266
-        # 3017620422003
+        # 6111246721278 Cream Cheese
+        # 3175681851849 Apple Hazelnut Cookie
+        # 8718114724485 Hellmann's Mayonnaise 
+        # 7613039490266 Nesquick Chocolate Milk
+        # 3017620422003 Nutella
+        # 0063348006943 Bear Paws Chocolate Chip
+        # 5000171010025 Canned Salmon
+        # 8901491101837 Lays Classic Salted Chips
+        # 90162602 Red Bull Energy Drink
+        # 6111035000430 Water
         nutriments = product.get("nutriments", {})
         energy_value = nutriments.get("energy-kcal", 0)
         carbohydrates_value = nutriments.get("carbohydrates", 0)
