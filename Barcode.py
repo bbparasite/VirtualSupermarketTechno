@@ -16,12 +16,16 @@ def send_product_data(client, product):
 
         # Access the 'nutriments' dictionary first, then get 'sugars'.
         # Provide default empty dictionary {} for nutriments if it doesn't exist.
+        # Barcode examples:
+        # 6111246721278
+        # 3175681851849
+        # 8718114724485
+        # 7613039490266
+        # 3017620422003
         nutriments = product.get("nutriments", {})
-        fibers_value = nutriments.get("fiber", 0)
         energy_value = nutriments.get("energy-kcal", 0)
         carbohydrates_value = nutriments.get("carbohydrates", 0)
         fat_value = nutriments.get("fat", 0)
-        saturated_fat_value = nutriments.get("saturated-fat", 0)
         proteins_value = nutriments.get("proteins", 0)
         sugars_value = nutriments.get("sugars", 0)
 
@@ -30,13 +34,10 @@ def send_product_data(client, product):
 
         # Send selected product information via OSC messages
         client.send_message("/product/name", product_name)
-        client.send_message("/product/nutrition_grade", nutrition_grade)
         client.send_message("/product/nutriments/sugars", sugars_value)
-        client.send_message("/product/nutriments/fibers", fibers_value)
         client.send_message("/product/nutriments/energy", energy_value)
         client.send_message("/product/nutriments/carbohydrates", carbohydrates_value)
         client.send_message("/product/nutriments/fat", fat_value)
-        client.send_message("/product/nutriments/saturated_fat", saturated_fat_value)
         client.send_message("/product/nutriments/proteins", proteins_value)
 
         print(f"Sent product data for {product_name} via OSC")
